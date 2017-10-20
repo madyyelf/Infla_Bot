@@ -1,0 +1,4 @@
+hola - Saluda molt educadament.
+test_velocitat - Fa un SpeedTest.
+traceroute - Fa un traceroute cap al host indicat.
+ping - Fa un ping al hosti indicat.
