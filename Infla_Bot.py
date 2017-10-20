@@ -80,8 +80,8 @@ def command_ping(message):
 def command_estat_serveis(message):
     cid = message.chat.id
     servidors = []
-    servidors.append({"IP": "192.168.1.207", "Ports": [22,53,21,80]})
-    servidors.append({"IP": "192.168.2.2", "Ports": [80,51,443,33,22]})
+    servidors.append({"IP": "192.168.1.217", "Ports": [22,53,21,80]})
+    servidors.append({"IP": "192.168.2.3", "Ports": [80,51,443,33,22]})
     #escanner = nmap.PortScanner()
 
 
