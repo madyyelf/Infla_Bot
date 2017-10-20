@@ -5,6 +5,9 @@ import telebot    # Librería de la API del bot.
 # from telebot import types    # Tipos para la API del bot.
 # Librería para hacer que el programa que controla el bot no se acabe.
 # Nuestro tokken del bot (el que @BotFather nos dió).
+import nmap
+import socket
+import os
 TOKEN = '361167179:AAEhx-9EFDgCHWTmc798-RN4oa4HL6I6G90'
 
 bot = telebot.TeleBot(TOKEN)   # Creamos el objeto de nuestro bot.
@@ -75,12 +78,35 @@ def command_ping(message):
 
 @bot.message_handler(commands=['estat_serveis'])
 def command_estat_serveis(message):
-    serveis=[]
-    serveis.append({"Host":"10.50.0.1","Serveis":["SSH"],"Ports":["22"]})
-    serveis.append({"Host":"10.51.0.4","Serveis":["DNS"],"Ports":["53"]})
-    print serveis[1]['Serveis']
     cid = message.chat.id
-    #bot.send_message(cid,"Implementant...")
+    servidors = []
+    servidors.append({"IP": "192.168.1.207", "Ports": [22,53,21,80]})
+    servidors.append({"IP": "192.168.2.2", "Ports": [80,51,443,33,22]})
+    #escanner = nmap.PortScanner()
+
+
+    for equip in servidors:
+        # bot.send_message(cid,"Escanejant "+equip['IP']+" ...")
+        # escanner.scan(equip['IP'], ''.join(equip['Ports']))
+        # bot.send_message(cid, equip['IP']+' '+escanner[equip['IP']].state())
+        if os.system("ping -c 1 "+equip['IP'])==0:
+            bot.send_message(cid,"Host "+equip['IP']+" up.")
+            for port in equip['Ports']:
+                # print port
+                # bot.send_message(cid, "Port "+port+": "+str(escanner[equip['IP']]['tcp']))
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                s.settimeout(10)
+                try:
+                    s.connect((equip['IP'], port))
+                    bot.send_message(cid,"Port "+str(port)+" obert.")
+                except socket.error as e:
+                    bot.send_message(cid,"Port "+str(port)+ " ERROR!") #+": %s" % e)
+                s.close()
+        else:
+            bot.send_message(cid,"Host "+equip['IP']+" down.")
+
+
+
 
 
 
