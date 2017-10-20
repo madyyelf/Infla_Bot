@@ -73,6 +73,18 @@ def command_ping(message):
     else:
         bot.send_message(cid, "[!] Error llançant el Ping.")
 
+@bot.message_handler(commands=['estat_serveis'])
+def command_estat_serveis(message):
+    serveis=[]
+    serveis.append({"Host":"10.50.0.1","Serveis":["SSH"],"Ports":["22"]})
+    serveis.append({"Host":"10.51.0.4","Serveis":["DNS"],"Ports":["53"]})
+    print serveis[1]['Serveis']
+    cid = message.chat.id
+    #bot.send_message(cid,"Implementant...")
+
+
+
+
 #############################################
 # Peticiones
 bot.polling(none_stop=True)   # Con esto, le decimos al bot que siga
