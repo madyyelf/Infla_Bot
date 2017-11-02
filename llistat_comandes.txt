@@ -3,3 +3,4 @@ test_velocitat - Fa un SpeedTest.
 traceroute - Fa un traceroute cap al host indicat.
 ping - Fa un ping al hosti indicat.
 estat_serveis - Mostra l'estat dels serveis tant interns com DMZ.
+internet - (estat,<aula> on, <aula> off) Gestiona la connexió a internet d'una aula.
