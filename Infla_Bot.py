@@ -7,7 +7,7 @@ import telebot    # Librería de la API del bot.
 # Nuestro tokken del bot (el que @BotFather nos dió).
 import socket
 import os
-TOKEN = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+TOKEN = '361167179:AAEhx-9EFDgCHWTmc798-RN4oa4HL6I6G90'
 
 bot = telebot.TeleBot(TOKEN)   # Creamos el objeto de nuestro bot.
 
